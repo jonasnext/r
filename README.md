@@ -1,2 +1,1 @@
-# r
-r • i.e. art
+# r i.e. art in r
