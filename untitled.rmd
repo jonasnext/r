@@ -9,7 +9,7 @@ library(tidyverse)
 # circle
 
 ```{r}
-seq(0, 1, 0.01) %>%
+seq(0, 1, .01) %>%
 data.frame(a=.) %>%
 ggplot(aes(x=(a), y=(0))) +
 geom_point(alpha=.2, color="#000000", size=0) +
@@ -20,7 +20,7 @@ theme_void()
 # flower | rose
 
 ```{r}
-seq(-pi, pi, 0.01) %>%
+seq(-pi, pi, .01) %>%
 data.frame(a=.) %>%
 ggplot(aes(x=(a), y=(2 * sin(4 * a)))) +
 geom_point(alpha=.2, color="#000000", size=0) +
@@ -31,7 +31,7 @@ theme_void()
 # flower | rose #2
 
 ```{r}
-seq(-2*pi, 2*pi, 0.01) %>%
+seq(-2*pi, 2*pi, .01) %>%
 data.frame(a=.) %>%
 ggplot(aes(x=(a), y=(cos(3 * a)))) +
 geom_point(alpha=.2, color="#000000", size=0) +
@@ -45,7 +45,7 @@ theme_void()
 
 # shape (201, 1) -> (40401, 2)
 
-seq(-1, 1, 0.01) %>%
+seq(-1, 1, .01) %>%
 expand.grid(x=., y=.) %>%
 ggplot(aes(x=(pi * x - cos(y^2)), y=(1 - sin(x^2)))) +
 geom_point(alpha=.02, color="#000000", size=0) +
