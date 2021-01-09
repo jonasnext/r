@@ -5,3 +5,12 @@
 ```{r}
 library(tidyverse)
 ```
+
+```{r}
+seq(0, 1, 0.01) %>%
+data.frame(a=.) %>%
+ggplot(aes(x=(a), y=(0))) +
+geom_point(alpha=.2, color="#000000", size=0) +
+coord_polar() +
+theme_void()
+```
