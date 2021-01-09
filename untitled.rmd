@@ -17,6 +17,17 @@ coord_polar() +
 theme_void()
 ```
 
+# flower | rose
+
+```{r}
+seq(-pi, pi, 0.01) %>%
+data.frame(a=.) %>%
+ggplot(aes(x=(a), y=(2 * sin(4 * a)))) +
+geom_point(alpha=.2, color="#000000", size=0) +
+coord_polar() +
+theme_void()
+```
+
 # <3
 
 ```{r}
