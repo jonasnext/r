@@ -30,3 +30,11 @@ geom_point(alpha=.02, color="#000000", size=0) +
 coord_polar() +
 theme_void()
 ```
+
+# save
+
+```{r}
+t <- format(Sys.time(), format="%F_%H-%M")
+fn <- paste(t, "png", sep=".")
+ggsave(fn, units="in", width=1800/300, height=1800/300)
+```
