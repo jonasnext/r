@@ -16,3 +16,17 @@ geom_point(alpha=.2, color="#000000", size=0) +
 coord_polar() +
 theme_void()
 ```
+
+# <3
+
+```{r}
+
+# shape (201, 1) -> (40401, 2)
+
+seq(-1, 1, 0.01) %>%
+expand.grid(x=., y=.) %>%
+ggplot(aes(x=(pi * x - cos(y^2)), y=(1 - sin(x^2)))) +
+geom_point(alpha=.02, color="#000000", size=0) +
+coord_polar() +
+theme_void()
+```
