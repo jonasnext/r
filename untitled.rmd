@@ -39,6 +39,17 @@ coord_polar() +
 theme_void()
 ```
 
+```{r}
+golden_ratio <- (1+sqrt(5))/2
+golden_angle <- pi*(3-sqrt(5))
+
+(seq(0, 1000, .1) * golden_angle) %>%
+data.frame(a=., x=sin(.), y=cos(.)) %>%
+ggplot(aes(x=a*x, y=a*y)) +
+geom_point(alpha=.8, color="#000000", size=0) +
+theme_void()
+```
+
 # <3
 
 ```{r}
