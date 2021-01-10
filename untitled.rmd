@@ -70,10 +70,21 @@ coord_polar() +
 theme_void()
 ```
 
+# xyz
+
+```{r}
+seq(-pi, pi, .1) %>%
+expand.grid(x=., y=., z=.) %>%
+ggplot(aes(x=x+y+z, y=x*y*z)) +
+geom_point(alpha=.1, color="#000000", size=0) +
+coord_polar() +
+theme_void()
+```
+
 # save
 
 ```{r}
-t <- format(Sys.time(), format="%F_%H-%M")
+t <- format(Sys.time(), format="%F_%H-%M-%S")
 fn <- paste(t, "png", sep=".")
 ggsave(fn, units="in", width=1800/300, height=1800/300)
 ```
