@@ -47,10 +47,10 @@ golden_angle <- pi*(3-sqrt(5))
 
 gold_titanium = c("#eba584", "#d4a67c", "#c3ad95", "#554e41")
 
-(seq(0, 1000, .3) * golden_angle) %>%
+(seq(0, 100, 1) * golden_angle) %>%
 data.frame(a=., x=sin(.), y=cos(.)) %>%
 ggplot(aes(x=a*x, y=a*y)) +
-geom_point(aes(color=a, size=0), alpha=.06, show.legend=F) +
+geom_point(aes(color=a, size=0), alpha=.1, show.legend=F) +
 scale_color_gradientn(colors=titanium_gold) +
 theme_void() +
 theme(plot.background=element_rect("#f4f4f4"))
