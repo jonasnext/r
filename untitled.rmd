@@ -39,14 +39,17 @@ coord_polar() +
 theme_void()
 ```
 
+# golden flower
+
 ```{r}
 golden_ratio <- (1+sqrt(5))/2
 golden_angle <- pi*(3-sqrt(5))
 
-(seq(0, 1000, .1) * golden_angle) %>%
+(seq(0, 1000, .02) * golden_angle) %>%
 data.frame(a=., x=sin(.), y=cos(.)) %>%
 ggplot(aes(x=a*x, y=a*y)) +
-geom_point(alpha=.8, color="#000000", size=0) +
+geom_point(aes(color=a), alpha=.4, size=0, shape=".", show.legend=F) +
+scale_color_gradientn(colors = c("#554e41", "#c3ad95", "#eba584", "#d4a67c")) +
 theme_void()
 ```
 
