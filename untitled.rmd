@@ -45,11 +45,13 @@ theme_void()
 golden_ratio <- (1+sqrt(5))/2
 golden_angle <- pi*(3-sqrt(5))
 
-(seq(0, 1000, .02) * golden_angle) %>%
+gold_titanium = c("#eba584", "#d4a67c", "#c3ad95", "#554e41")
+
+(seq(0, 1000, .5) * golden_angle) %>%
 data.frame(a=., x=sin(.), y=cos(.)) %>%
 ggplot(aes(x=a*x, y=a*y)) +
-geom_point(aes(color=a), alpha=.4, size=0, shape=".", show.legend=F) +
-scale_color_gradientn(colors = c("#554e41", "#c3ad95", "#eba584", "#d4a67c")) +
+geom_point(aes(color=a, size=0), alpha=.08, show.legend=F) +
+scale_color_gradientn(colors = titanium_gold) +
 theme_void()
 ```
 
