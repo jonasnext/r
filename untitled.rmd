@@ -81,6 +81,25 @@ coord_polar() +
 theme_void()
 ```
 
+# xyz #2
+
+```{r}
+map(seq(0, 4, 1), function(i) {
+    a <- seq(-pi, pi, .1) %>%
+    expand.grid(x=., y=., z=.) %>%
+    ggplot(aes(x=runif(1,-1,1)*x+runif(1,-1,1)*y^2+runif(1,-1,1)*z^3,
+               y=runif(1,-1,1)*x+runif(1,-1,1)*y+runif(1,-1,1)*z)) +
+    geom_point(alpha=.08, color="#000000", size=0) +
+    coord_polar() +
+    theme_void()
+
+    t <- format(Sys.time(), format="%F_%H-%M-%S")
+    t <- paste(i, t, sep="_")
+    fn <- paste(t, "png", sep=".")
+    ggsave(fn, a, units="in", width=1800/300, height=1800/300)
+})
+```
+
 # save
 
 ```{r}
