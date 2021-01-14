@@ -84,11 +84,15 @@ theme_void()
 # xyz #2
 
 ```{r}
-map(seq(0, 4, 1), function(i) {
+model <- list(
+    x=quote(runif(1,-1,1)*x+runif(1,-1,1)*y^2+runif(1,-1,1)*z^3),
+    y=quote(runif(1,-1,1)*x+runif(1,-1,1)*y+runif(1,-1,1)*z)
+    )
+map(seq(0, 1, 1), function(i) {
     a <- seq(-pi, pi, .1) %>%
     expand.grid(x=., y=., z=.) %>%
-    ggplot(aes(x=runif(1,-1,1)*x+runif(1,-1,1)*y^2+runif(1,-1,1)*z^3,
-               y=runif(1,-1,1)*x+runif(1,-1,1)*y+runif(1,-1,1)*z)) +
+    mutate(!!!model) %>%
+    ggplot(aes(x=x, y=y)) +
     geom_point(alpha=.08, color="#000000", size=0) +
     coord_polar() +
     theme_void()
