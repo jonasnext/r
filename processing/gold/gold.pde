@@ -41,6 +41,11 @@ void setup() {
     y[i] = b;
   }
 
+  for (int i = 0; i < colors.length; i++) {
+    color c = colors[i];
+    colors[i] = color(c >> 16 & 0xFF, c >> 8 & 0xFF, c & 0xFF, 80);
+  }
+
   background(#ffffff);
 }
 
@@ -48,7 +53,7 @@ void draw() {
   translate(width/2, height/2);
   strokeWeight(16);
 
-  int cIndex = int(random(colors.length-1));
+  int cIndex = int(random(colors.length));
   stroke(colors[cIndex]);
 
   int i = min(x.length - 1, frameCount - 1);
