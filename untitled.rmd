@@ -84,11 +84,26 @@ theme_void()
 # xyz #2
 
 ```{r}
+get_log <- function(filename) {
+    if (file.exists(filename)) {
+        return(read.csv(filename, sep="\t"))
+    }
+    return(data.frame(date=NA, seed=NA, x=NA, y=NA))
+}
+```
+
+```{r}
 model <- list(
     x=quote(runif(1,-1,1)*x+runif(1,-1,1)*y^2+runif(1,-1,1)*z^3),
     y=quote(runif(1,-1,1)*x+runif(1,-1,1)*y+runif(1,-1,1)*z)
     )
-map(seq(0, 1, 1), function(i) {
+log <- "log.csv"
+sequence <- seq(0, 1, 1)
+seeds <- sample(1:1000, length(sequence))
+result <- map(sequence, function(i) {
+    seed <- seeds[i+1]
+    set.seed(seed)
+
     a <- seq(-pi, pi, .1) %>%
     expand.grid(x=., y=., z=.) %>%
     mutate(!!!model) %>%
@@ -98,9 +113,14 @@ map(seq(0, 1, 1), function(i) {
     theme_void()
 
     t <- format(Sys.time(), format="%F_%H-%M-%S")
-    t <- paste(i, t, sep="_")
-    fn <- paste(t, "png", sep=".")
+    fn <- paste(paste(t, seed, sep="_"), "png", sep=".")
+
     ggsave(fn, a, units="in", width=1800/300, height=1800/300)
+
+    log_df <- get_log(log)
+    new_df <- data.frame(date=t, seed=seed, x=as.character(model["x"]), y=as.character(model["y"]))
+    log_df <- bind_rows(log_df, new_df)
+    write.table(log_df, log, sep="\t", row.names=F)
 })
 ```
 
