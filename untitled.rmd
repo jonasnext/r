@@ -97,11 +97,22 @@ model <- list(
     x=quote(runif(1,-1,1)*x+runif(1,-1,1)*y^2+runif(1,-1,1)*z^3),
     y=quote(runif(1,-1,1)*x+runif(1,-1,1)*y+runif(1,-1,1)*z)
     )
+
 log <- "log.csv"
 sequence <- seq(0, 1, 1)
 seeds <- sample(1:1000, length(sequence))
-result <- map(sequence, function(i) {
-    seed <- seeds[i+1]
+log_df = get_log(log)
+
+seeds_log <- log_df %>%
+    dplyr::filter(x == as.character(model["x"])) %>%
+    dplyr::filter(y == as.character(model["y"])) %>%
+    dplyr::filter(seed %in% seeds) %>%
+    dplyr::pull(seed) %>%
+    unique(.)
+
+seeds <- seeds[(!(seeds %in% seeds_log))]
+
+result <- map(seeds, function(seed) {
     set.seed(seed)
 
     a <- seq(-pi, pi, .1) %>%
