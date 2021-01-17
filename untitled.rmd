@@ -53,7 +53,8 @@ ggplot(aes(x=a*x, y=a*y)) +
 geom_point(aes(color=a, size=0), alpha=.1, show.legend=F) +
 scale_color_gradientn(colors=gold_titanium) +
 theme_void() +
-theme(plot.background=element_rect("#f4f4f4"))
+theme(plot.background=element_rect("#f4f4f4")) +
+theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
 ```
 
 # xy <3
