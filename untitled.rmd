@@ -51,7 +51,7 @@ gold_titanium = c("#eba584", "#d4a67c", "#c3ad95", "#554e41")
 data.frame(a=., x=sin(.), y=cos(.)) %>%
 ggplot(aes(x=a*x, y=a*y)) +
 geom_point(aes(color=a, size=0), alpha=.1, show.legend=F) +
-scale_color_gradientn(colors=titanium_gold) +
+scale_color_gradientn(colors=gold_titanium) +
 theme_void() +
 theme(plot.background=element_rect("#f4f4f4"))
 ```
