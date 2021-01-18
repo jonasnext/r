@@ -57,6 +57,74 @@ theme(plot.background=element_rect("#f4f4f4")) +
 theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
 ```
 
+# lisa
+
+```{r}
+gold_titanium = c("#eba584", "#d4a67c", "#c3ad95", "#554e41")
+
+a <- 1
+b <- 1
+c <- 1
+A <- 10
+B <- 10
+
+(seq(-2*pi, 2*pi, .1)) %>%
+data.frame(t=.) %>%
+ggplot(aes(x=A*sin(a*t+c), y=B*sin(b*t))) +
+geom_point(aes(color=t, size=0), alpha=.1, show.legend=F) +
+scale_color_gradientn(colors=gold_titanium) +
+theme_void() +
+theme(plot.background=element_rect("#f4f4f4")) +
+theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
+```
+
+# rose
+
+```{r}
+gold_titanium = c("#eba584", "#d4a67c", "#c3ad95", "#554e41")
+slate = c("#383836")
+
+n <- 8
+d <- 4
+
+angle <- 10*(pi/180)
+
+makeRose <- function(n, d, angle) {
+    r <- (seq(0, 8*pi, .04)) %>%
+    data.frame(t=.) %>%
+    mutate(x=cos(n/d*t)*cos(t), y=cos(n/d*t)*sin(t)) %>%
+    mutate(xx=x*cos(angle)-y*sin(angle), yy=x*sin(angle)+y*cos(angle)) %>%
+    ggplot(aes(x=xx, y=yy)) +
+    geom_point(aes(color=t, size=0), alpha=.1, show.legend=F) +
+    scale_color_gradientn(colors=slate) +
+    theme_void() +
+    theme(plot.background=element_rect("#f4f4f4")) +
+    theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
+    return(r)
+}
+
+rose <- makeRose(8, 4, 0)
+rose
+```
+
+# rose animation
+
+```{r}
+
+easeInOutCubic <- function(x) {
+    return(ifelse(x < 0.5, 4*x*x*x, 1 - ((-2*x+2)^3) / 2))
+}
+
+sequence <- seq(0, 1, 1/60) %>% easeInOutCubic() %>% `*`(2*pi)
+
+imap(sequence, function(angle, i) {
+    rose <- makeRose(8, 4, angle)
+    fn <- paste(str_pad(i-1, 2, "left", "0"), "png", sep=".")
+    ggsave(fn, rose, units="in", width=1800/300, height=1800/300)
+})
+
+```
+
 # xy <3
 
 ```{r}
