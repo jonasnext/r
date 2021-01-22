@@ -218,6 +218,42 @@ imap(sequence, function(angle, i) {
 
 ```
 
+# hgraph
+
+```{r}
+a1 <- 1
+a2 <- 1
+a3 <- 1
+a4 <- 1
+d1 <- 1
+d2 <- 0
+d3 <- 1
+d4 <- 0
+f1 <- 1
+f2 <- 1
+f3 <- 1
+f4 <- 2
+p1 <- 1
+p2 <- 1
+p3 <- 1
+p4 <- 1
+
+n <- 1000000
+m <- 180*pi
+
+data.frame(t=seq(0, m, m/n)) %>%
+    mutate(
+        x = a1*sin(t*f1+p1)*exp(-d1*t)+a2*sin(t*f2+p2)*exp(-d2*t),
+        y = a3*sin(t*f3+p3)*exp(-d3*t)+a4*sin(t*f4+p4)*exp(-d4*t)
+    ) %>%
+    ggplot(aes(x=x, y=y)) +
+    geom_point(aes(color=a, size=0), shape=".", alpha=.12, show.legend=F) +
+    scale_color_gradientn(colors=gold_titanium) +
+    theme_void() +
+    theme(plot.background=element_rect("#f4f4f4")) +
+    theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
+```
+
 # xy <3
 
 ```{r}
