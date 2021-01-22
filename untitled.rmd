@@ -254,6 +254,30 @@ data.frame(t=seq(0, m, m/n)) %>%
     theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
 ```
 
+# sgraph
+
+```{r}
+
+R <- 10
+r <- 4
+d <- 4
+
+data.frame(t=seq(0, 2*pi*r, .01)) %>%
+    mutate(
+        rho = seq(0, 2*pi*r, .01),
+        x  = x0+(R-r)*cos(rho)+d*cos(rho*(R-r)/r),
+        y  = y0+(R-r)*sin(rho)-d*sin(rho*(R-r)/r),
+        x_ = x0+(R+r)*cos(rho)-d*cos(rho*(R+r)/r),
+        y_ = y0+(R+r)*sin(rho)-d*sin(rho*(R+r)/r)
+    ) %>%
+    ggplot(aes(x=x, y=y)) +
+    geom_point(aes(color=a, size=0), shape=".", alpha=.12, show.legend=F) +
+    scale_color_gradientn(colors=gold_titanium) +
+    theme_void() +
+    theme(plot.background=element_rect("#f4f4f4")) +
+    theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
+```
+
 # xy <3
 
 ```{r}
