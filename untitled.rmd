@@ -278,6 +278,38 @@ data.frame(t=seq(0, 2*pi*r, .01)) %>%
     theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
 ```
 
+# chaos #1 (pdj)
+
+```{r}
+n <- 100000
+sequence <- vector(mode="numeric", length=n)
+x <- vector(mode="numeric", length=n)
+y <- vector(mode="numeric", length=n)
+
+x[1] <- 0
+y[1] <- 0
+
+a <- 0.8
+b <- 1.5
+c <- -0.1
+d <- 2
+
+for (i in 2:length(sequence)) {
+    x[i] <- sin(a*y[i-1])-cos(b*x[i-1])
+    y[i] <- sin(c*x[i-1])-cos(d*y[i-1])
+}
+
+df <- data.frame(a=sequence, x=x, y=y)
+
+df %>%
+ggplot(aes(x=x, y=y)) +
+geom_point(aes(color=a, size=0), shape=".", alpha=.08, show.legend=F) +
+scale_color_gradientn(colors=gold_titanium) +
+theme_void() +
+theme(plot.background=element_rect("#f4f4f4")) +
+theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
+```
+
 # xy <3
 
 ```{r}
