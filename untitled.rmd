@@ -6,6 +6,14 @@
 library(tidyverse)
 ```
 
+```{r}
+golden_ratio <- (1+sqrt(5))/2
+golden_angle <- pi*(3-sqrt(5))
+
+gold_titanium = c("#eba584", "#d4a67c", "#c3ad95", "#554e41")
+slate = c("#383836")
+```
+
 # circle
 
 ```{r}
@@ -42,11 +50,6 @@ theme_void()
 # golden flower
 
 ```{r}
-golden_ratio <- (1+sqrt(5))/2
-golden_angle <- pi*(3-sqrt(5))
-
-gold_titanium = c("#eba584", "#d4a67c", "#c3ad95", "#554e41")
-
 (seq(0, 100, 1) * golden_angle) %>%
 data.frame(a=., x=sin(.), y=cos(.)) %>%
 ggplot(aes(x=a*x, y=a*y)) +
@@ -60,8 +63,6 @@ theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
 # lisa
 
 ```{r}
-gold_titanium = c("#eba584", "#d4a67c", "#c3ad95", "#554e41")
-
 a <- 1
 b <- 1
 c <- 1
@@ -81,9 +82,6 @@ theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
 # rose
 
 ```{r}
-gold_titanium = c("#eba584", "#d4a67c", "#c3ad95", "#554e41")
-slate = c("#383836")
-
 n <- 8
 d <- 4
 
