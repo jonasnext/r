@@ -310,6 +310,47 @@ theme(plot.background=element_rect("#f4f4f4")) +
 theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
 ```
 
+# chaos #2 (l)
+
+```{r}
+
+n <- 100000
+sequence <- vector(mode="numeric", length=n)
+x <- vector(mode="numeric", length=n)
+y <- vector(mode="numeric", length=n)
+z <- vector(mode="numeric", length=n)
+
+x0 <- -1
+y0 <- 1
+z0 <- -1
+
+x[1] <- x0
+y[1] <- y0
+z[1] <- z0
+
+a <- 2.4
+b <- 0.8
+c <- 40
+dt <- .008
+n <- 1000
+
+for (i in 2:length(sequence)) {
+    x[i] <- x[i-1]+(a*(y[i-1]-x[i-1]))*dt
+    y[i] <- y[i-1]+(x[i-1]*(c-z[i-1])-y[i-1])*dt
+    z[i] <- z[i-1]+(x[i-1]*y[i-1]-b*z[i-1])*dt
+}
+
+df <- data.frame(a=sequence, x=x, y=y, z=z)
+
+df %>%
+ggplot(aes(x=x, y=y)) +
+geom_point(aes(color=a, size=0), shape=".", alpha=.08, show.legend=F) +
+scale_color_gradientn(colors=gold_titanium) +
+theme_void() +
+theme(plot.background=element_rect("#f4f4f4")) +
+theme(plot.margin=unit(c(4, 4, 4, 4), "cm"))
+```
+
 # xy <3
 
 ```{r}
