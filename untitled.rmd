@@ -14,6 +14,20 @@ gold_titanium = c("#eba584", "#d4a67c", "#c3ad95", "#554e41")
 slate = c("#383836")
 ```
 
+```{r}
+linearInterpolate <- function(a, b, t) {
+    return((1-t)*a + t*b)
+}
+
+dot <- function(a, b) {
+    return(a.x*b.x + a.y*b.y)
+}
+
+vlength <- function(a) {
+    return(dot(a, a))
+}
+```
+
 # circle
 
 ```{r}
