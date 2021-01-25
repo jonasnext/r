@@ -19,10 +19,10 @@ static class XYZTransformer {
     float rx = maxx - minx;
     float ry = maxy - miny;
 
-    float zminx = -w/4;
-    float zmaxx = w/4;
-    float zminy = -h/4;
-    float zmaxy = h/4;
+    float zminx = -w;
+    float zmaxx = w;
+    float zminy = -h;
+    float zmaxy = h;
 
     float zrx = (zmaxx - zminx);
     float zry = (zmaxy - zminy);
@@ -107,7 +107,7 @@ void setup() {
   smooth(8);
 
   Chaos.transform(x, y);
-  XYZTransformer.scale(x, y, width, height);
+  XYZTransformer.scale(x, y, width/4, height/4);
 
   // colors -> alpha
 
