@@ -1,6 +1,4 @@
-![img](/img/logo.svg)
-
-# 🎨
+# ![img](/img/logo.svg)
 
 ![img](../assets/img.png)
 
