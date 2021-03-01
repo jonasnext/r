@@ -1,4 +1,4 @@
-# r i.e. art • 🎨
+# ![img](/img/logo.svg)
 
 ![img](../assets/img.png)
 
